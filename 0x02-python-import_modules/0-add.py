@@ -8,4 +8,4 @@ if __name__ == "__main__":
     b = 2
 
     # Perform the addition and print the result
-    print(f"{a:d} + {b:d} = {add(a + b):d}")
+    print(f"{a:d} + {b:d} = {add(a + b):d}".format(a, b, add(a, b)))
