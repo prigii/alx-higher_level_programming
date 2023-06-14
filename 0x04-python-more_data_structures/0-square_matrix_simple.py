@@ -15,7 +15,5 @@ def square_matrix_simple(matrix=[]):
     """
 
 
-if not matrix:
-    return []
-
-return([list(map(lambda x ** 2, row) for row in matrix])
+new_matrix = list(map(lambda x ** 2, row) for row in matrix]
+return(new_matrix)
