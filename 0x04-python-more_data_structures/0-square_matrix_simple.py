@@ -18,6 +18,4 @@ def square_matrix_simple(matrix=[]):
 if not matrix:
     return []
 
-new_matrix = map(lambda row: [value ** 2 for value in row], matrix)
-
-return new_matrix
+return([list(map(lambda x ** 2, row) for row in matrix])
