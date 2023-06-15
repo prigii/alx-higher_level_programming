@@ -20,6 +20,5 @@ def search_replace(my_list, search, replace):
     a new list with the new elements
     """
 
-
-    new_list = list(map(lambda x: replace if x == search else x for x in my_list))
-        return (new_list)
+    new_list = list(map(lambda x: replace if x == search else x, my_list))
+    return (new_list)
