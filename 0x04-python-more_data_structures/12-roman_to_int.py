@@ -1,10 +1,15 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
-    if not roman_string:
-        return 0
-    roman_int_dict = {'M': 1000, 'D': 500, 'C': 100, 'L': 50,
-                      'X': 10, 'V': 5, 'I': 1}
-    result = [roman_int_dict.get(sym) for sym in roman_string]
-    if None in result:
-        return 0
-    return (lambda x, y: x + y if y <= x else y - x, result)
+    if roman_string is None or isinstance(roman_string, str) is False:
+        return None
+    n = 0
+    roman = {'M': 1000, 'D': 500, 'C': 100, 'L': 50, 'X': 10, 'V': 5, 'I': 1}
+    for i in roman_string:
+        n += roman.get(i, 0)
+    subs = {'CM': -200, 'CD': -200, 'XC': -20, 'XL': -20, 'IX': -2, 'IV': -2}
+    chars = ""
+    for i in range(0, len(roman_string) - 1):
+        chars = roman_string[i] + roman_string[i + 1]
+    if chars in subs:
+        n += subs[chars]
+    return n
