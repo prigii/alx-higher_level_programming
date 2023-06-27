@@ -53,11 +53,11 @@ class Square:
 
         """
         Return the current area of the square
-        
+
         """
 
         return self.__size * self.__size
-	
+
     def __eq__(self, other):
 
         """
@@ -78,7 +78,6 @@ class Square:
 
         return self.area() != other.area()
 
-		
     def __lt__(self, other):
 
         """
@@ -89,7 +88,6 @@ class Square:
 
         return self.area() < other.area()
 
-		
     def __le__(self, other):
 
         """
@@ -100,7 +98,6 @@ class Square:
 
         return self.area() <= other.area()
 
-		
     def __gt__(self, other):
 
         """
@@ -109,9 +106,8 @@ class Square:
 
         """
 
-            return self.area() > other.area()
+        return self.area() > other.area()
 
-			
     def __ge__(self, other):
 
         """
