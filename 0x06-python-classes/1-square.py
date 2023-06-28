@@ -17,4 +17,4 @@ class Square:
         """
 
 
-self.__size = size
+        self.__size = size
