@@ -42,4 +42,4 @@ class Square:
 
         """
 
-    return self.__size * self.__size
+        return self.__size * self.__size
