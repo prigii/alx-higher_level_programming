@@ -26,80 +26,80 @@ class Square:
 
         self.position = position
 
-        @property
-        def size(self):
+    @property
+    def size(self):
 
-            """
-            Get/set the current size of the square
+        """
+        Get/set the current size of the square
 
-            """
-            return self.__size
+        """
+        return self.__size
 
-        @size.setter
-        def size(self, value):
+    @size.setter
+    def size(self, value):
 
-            if not isinstance(value, int):
+        if not isinstance(value, int):
 
-                raise TypeError("size must be an integer")
+            raise TypeError("size must be an integer")
 
-            elif value < 0:
+        elif value < 0:
 
-                raise ValueError("size must be >= 0")
+            raise ValueError("size must be >= 0")
 
-            self.__size = value
+        self.__size = value
 
-        @property
-        def position(self):
+    @property
+    def position(self):
 
-            """
-            Get/set the current position of the square
+        """
+        Get/set the current position of the square
 
-            """
-            return self.__position
+        """
+        return self.__position
 
-        @position.setter
-        def position(self, value):
+    @position.setter
+    def position(self, value):
 
-            if (not isinstance(value, tuple) or
+        if (not isinstance(value, tuple) or
 
-                    len(value) != 2 or
+            len(value) != 2 or
 
-                    not all(isinstance(num, int) for num in value) or
+            not all(isinstance(num, int) for num in value) or
 
-                    not all(num >= 0 for num in value)):
+        not all(num >= 0 for num in value)):
 
-                raise TypeError("position must be a tuple of 2
-                                positive integers")
+            raise TypeError("position must be a tuple of 2
+                            positive integers")
 
-            self.__position = value
+        self.__position = value
 
-        def area(self):
+    def area(self):
 
-            """
-            Return the current area of the square
+        """
+        Return the current area of the square
 
-            """
-            return self.__size * self.__size
+        """
+        return self.__size * self.__size
 
-        def my_print(self):
+    def my_print(self):
 
-            """
-            Print the square with # character
+        """
+        Print the square with # character
 
-            """
+        """
 
-            if self.__size == 0:
+        if self.__size == 0:
 
-                print("")
+            print("")
 
-                return
+            return
 
-                [print("") for i in range(self.__position[1])]
+            [print("") for i in range(self.__position[1])]
 
-            for i in range(self.__size):
+        for i in range(self.__size):
 
-                [print(" ", end="") for j in range(self.__position[0])]
+            [print(" ", end="") for j in range(self.__position[0])]
 
-                [print("#", end="") for k in range(self.__size)]
+            [print("#", end="") for k in range(self.__size)]
 
-                print("")
+            print("")
