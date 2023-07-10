@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Defines teh function lookup
+Defines the function lookup
 """
 
 
