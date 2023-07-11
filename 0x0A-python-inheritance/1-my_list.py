@@ -10,16 +10,10 @@ class MyList(list):
     Inherits from list class
     """
 
-    def __init__(self):
-        """
-        Initialises the object
-        """
-
-        super().__init__()
-
     def print_sorted(self):
         """
         Prints the list, but sorted (ascending sort)
         """
-
-        print(sorted(self))
+	sorted_list = sorted(self)
+       
+        print(sorted_list)
