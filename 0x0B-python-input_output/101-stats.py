@@ -48,9 +48,9 @@ if __name__ == "__main__":
                 list_line = [x for x in line.split(" ") if x.strip()]
                 magic.add_status_code(list_line[-2])
                 magic.size += int(list_line[-1].strip("\n"))
-	    except:
-		pass
-	    nlines +=1
+            except:
+                pass
+            nlines += 1
     except KeyboardInterrupt:
         magic.print_info()
         raise
