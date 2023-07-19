@@ -112,8 +112,8 @@ class Base:
                 s = f.read()
                 list_dicts = cls.from_json_string(s)
                 for d in list_dicts:
-                    l.append(cls.create(**d))
-        return l
+                    li.append(cls.create(**d))
+        return li
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
