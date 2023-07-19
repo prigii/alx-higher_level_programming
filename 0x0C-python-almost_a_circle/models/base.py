@@ -67,7 +67,7 @@ class Base:
             jstr = cls.to_json_string([o.to_dictionary() for o in list_objs])
         filename = cls.__name__ + ".json"
         with open(filename, 'w') as f:
-                f.write(jstr)
+            f.write(jstr)
 
     @staticmethod
     def from_json_string(json_string):
@@ -77,12 +77,12 @@ class Base:
             - json_string: string to convert to list
         """
 
-        l = []
+        li = []
         if json_string is not None and json_string != '':
             if type(json_string) != str:
                 raise TypeError("json_string must be a string")
-            l = json.loads(json_string)
-        return l
+            li = json.loads(json_string)
+        return li
 
     @classmethod
     def create(cls, **dictionary):
@@ -105,7 +105,7 @@ class Base:
         """Returns a list of instances."""
 
         filename = cls.__name__ + ".json"
-        l = []
+        li = []
         list_dicts = []
         if os.path.exists(filename):
             with open(filename, 'r') as f:
@@ -149,7 +149,7 @@ class Base:
         """
 
         filename = cls.__name__ + ".csv"
-        l = []
+        li = []
         if os.path.exists(filename):
             with open(filename, 'r') as f:
                 reader = csv.reader(f, delimiter=',')
