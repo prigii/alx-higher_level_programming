@@ -1,136 +1,171 @@
 #!/usr/bin/python3
-""" Module that contains class Base """
+"""Module rectangle.
+Create a Rectangle class, inheriting from Base.
+"""
 import json
-import csv
-import os.path
+from models.base import Base
 
 
-class Base:
-    """ Class Base """
-    __nb_objects = 0
+class Rectangle(Base):
+    """Class describing a rectangle.
+    Public instance methods:
+        - area()
+        - display()
+        - to_dictionary()
+        - update()
+    Inherits from Base.
+    """
 
-    def __init__(self, id=None):
-        """ Initializes instances """
-        if id is not None:
-            self.id = id
+    def __init__(self, width, height, x=0, y=0, id=None):
+        """Initializes a Rectangle instance.
+
+        Args:
+            - __width: width
+            - __height: height
+            - __x: position
+            - __y: position
+            - id: id
+        """
+
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
+        super().__init__(id)
+
+    @property
+    def width(self):
+        """Retrieves the width attribute."""
+
+        return self.__width
+
+    @property
+    def height(self):
+        """Retrieves the height attribute."""
+
+        return self.__height
+
+    @property
+    def x(self):
+        """Retrieves the x attribute."""
+
+        return self.__x
+
+    @property
+    def y(self):
+        """Retrieves the y attribute."""
+
+        return self.__y
+
+    @width.setter
+    def width(self, value):
+        """Sets the width attribute."""
+
+        if type(value) is not int:
+            raise TypeError("width must be an integer")
+        if value <= 0:
+            raise ValueError("width must be > 0")
+        self.__width = value
+
+    @height.setter
+    def height(self, value):
+        """Sets the height attribute."""
+
+        if type(value) is not int:
+            raise TypeError("height must be an integer")
+        if value <= 0:
+            raise ValueError("height must be > 0")
+        self.__height = value
+
+    @x.setter
+    def x(self, value):
+        """Sets the x attribute."""
+
+        if type(value) is not int:
+            raise TypeError("x must be an integer")
+        if value < 0:
+            raise ValueError("x must be >= 0")
+        self.__x = value
+
+    @y.setter
+    def y(self, value):
+        """Sets the y attribute."""
+
+        if type(value) is not int:
+            raise TypeError("y must be an integer")
+        if value < 0:
+            raise ValueError("y must be >= 0")
+        self.__y = value
+
+    def area(self):
+        """Calculates the area of a Rectangle instance.
+
+        Returns: area
+        """
+
+        return self.__width * self.__height
+
+    def display(self):
+        """Prints the Rectangle instance with the # character."""
+
+        for y in range(0, self.__y):
+            print()
+        for i in range(0, self.__height):
+            for x in range(0, self.__x):
+                print(" ", end="")
+            for j in range(0, self.__width):
+                print("#", end="")
+            print()
+
+    def __str__(self):
+        """Returns a string representation of a Rectangle instance."""
+
+        s = "[Rectangle] ({}) {}/{} - {}/{}".format(
+            self.id, self.__x, self.__y, self.__width, self.__height)
+        return s
+
+    def update(self, *args, **kwargs):
+        """Updates attributes of an instance.
+
+        Args:
+            - id attribute
+            - width attribute
+            - height attribute
+            - x attribute
+            - y attribute
+        """
+
+        if args is not None and len(args) != 0:
+            if len(args) >= 1:
+                if type(args[0]) != int and args[0] is not None:
+                    raise TypeError("id must be an integer")
+                self.id = args[0]
+            if len(args) > 1:
+                self.width = args[1]
+            if len(args) > 2:
+                self.height = args[2]
+            if len(args) > 3:
+                self.x = args[3]
+            if len(args) > 4:
+                self.y = args[4]
         else:
-            Base.__nb_objects += 1
-            self.id = Base.__nb_objects
+            for key, value in kwargs.items():
+                if key == "id":
+                    if type(value) != int and value is not None:
+                        raise TypeError("id must be an integer")
+                    self.id = value
+                if key == "width":
+                    self.width = value
+                if key == "height":
+                    self.height = value
+                if key == "x":
+                    self.x = value
+                if key == "y":
+                    self.y = value
 
-    @staticmethod
-    def to_json_string(list_dictionaries):
-        """ List to JSON string """
-        if list_dictionaries is None or list_dictionaries == "[]":
-            return "[]"
-        return json.dumps(list_dictionaries)
+    def to_dictionary(self):
+        """Returns the dictionary representation of a Rectangle."""
 
-    @classmethod
-    def save_to_file(cls, list_objs):
-        """ Save object in a file """
-        filename = "{}.json".format(cls.__name__)
-        list_dic = []
-
-        if not list_objs:
-            pass
-        else:
-            for i in range(len(list_objs)):
-                list_dic.append(list_objs[i].to_dictionary())
-
-        lists = cls.to_json_string(list_dic)
-
-        with open(filename, 'w') as f:
-            f.write(lists)
-
-    @staticmethod
-    def from_json_string(json_string):
-        """ JSON string to dictionary """
-        if not json_string:
-            return []
-        return json.loads(json_string)
-
-    @classmethod
-    def create(cls, **dictionary):
-        """ Create an instance """
-        if cls.__name__ == "Rectangle":
-            new = cls(10, 10)
-        else:
-            new = cls(10)
-        new.update(**dictionary)
-        return new
-
-    @classmethod
-    def load_from_file(cls):
-        """ Returns a list of instances """
-        filename = "{}.json".format(cls.__name__)
-
-        if os.path.exists(filename) is False:
-            return []
-
-        with open(filename, 'r') as f:
-            list_str = f.read()
-
-        list_cls = cls.from_json_string(list_str)
-        list_ins = []
-
-        for index in range(len(list_cls)):
-            list_ins.append(cls.create(**list_cls[index]))
-
-        return list_ins
-
-    @classmethod
-    def save_to_file_csv(cls, list_objs):
-        """ Method that saves a CSV file """
-        filename = "{}.csv".format(cls.__name__)
-
-        if cls.__name__ == "Rectangle":
-            list_dic = [0, 0, 0, 0, 0]
-            list_keys = ['id', 'width', 'height', 'x', 'y']
-        else:
-            list_dic = ['0', '0', '0', '0']
-            list_keys = ['id', 'size', 'x', 'y']
-
-        matrix = []
-
-        if not list_objs:
-            pass
-        else:
-            for obj in list_objs:
-                for kv in range(len(list_keys)):
-                    list_dic[kv] = obj.to_dictionary()[list_keys[kv]]
-                matrix.append(list_dic[:])
-
-        with open(filename, 'w') as writeFile:
-            writer = csv.writer(writeFile)
-            writer.writerows(matrix)
-
-    @classmethod
-    def load_from_file_csv(cls):
-        """ Method that loads a CSV file """
-        filename = "{}.csv".format(cls.__name__)
-
-        if os.path.exists(filename) is False:
-            return []
-
-        with open(filename, 'r') as readFile:
-            reader = csv.reader(readFile)
-            csv_list = list(reader)
-
-        if cls.__name__ == "Rectangle":
-            list_keys = ['id', 'width', 'height', 'x', 'y']
-        else:
-            list_keys = ['id', 'size', 'x', 'y']
-
-        matrix = []
-
-        for csv_elem in csv_list:
-            dict_csv = {}
-            for kv in enumerate(csv_elem):
-                dict_csv[list_keys[kv[0]]] = int(kv[1])
-            matrix.append(dict_csv)
-
-        list_ins = []
-
-        for index in range(len(matrix)):
-            list_ins.append(cls.create(**matrix[index]))
-
-        return list_ins
+        my_dict = {'id': self.id, 'width': self.__width,
+                   'height': self.__height, 'x': self.__x, 'y': self.__y}
+        return my_dict
