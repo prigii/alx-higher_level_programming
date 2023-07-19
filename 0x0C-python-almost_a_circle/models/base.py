@@ -163,8 +163,8 @@ class Base:
                         for j, e in enumerate(row):
                             if e:
                                 setattr(i, fields[j], int(e))
-                        l.append(i)
-        return l
+                        li.append(i)
+        return li
 
     @staticmethod
     def draw(list_rectangles, list_squares):
