@@ -1,3 +1,4 @@
+---creates a table second_table in the database 
 CREATE TABLE second_table IN DATABASE hbtn_0c_0 AS (
     id INT,
     name VARCHAR(256),
