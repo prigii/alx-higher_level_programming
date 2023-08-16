@@ -1,4 +1,4 @@
----- Display top 3 cities with max temp between July and August
+-- Display top 3 cities with max temp between July and August
 SELECT city, MAX(temperature) AS max_temp
 FROM temperatures
 WHERE MONTH(date) IN (7, 8)
