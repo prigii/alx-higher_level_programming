@@ -1,7 +1,7 @@
 -- Display top 3 cities with max temp between July and August
-SELECT city, MAX(value) AS max_temp
+SELECT city, MAX(value) AS avg_temp
 FROM temperatures
-WHERE MONTH IN (7, 8)
+WHERE month = 7 or month = 8
 GROUP BY city
-ORDER BY max_temp DESC
+ORDER BY avg_temp DESC
 LIMIT 3;
