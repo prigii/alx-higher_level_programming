@@ -1,4 +1,8 @@
 -- lists all the cities of California that can be found in the database hbtn_0d_usa
-USE hbtn_0d_usa;
-SHOW * FROM states WHERE name = California
-GROUP BY cities.id ASC;
+-- lists all the cities of California
+SELECT id, name FROM cities
+WHERE id = (
+	SELECT id FROM states
+	WHERE id = 1
+)
+ORDER BY id ASC;
