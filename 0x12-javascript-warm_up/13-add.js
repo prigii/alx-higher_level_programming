@@ -1,6 +1,4 @@
 #!/usr/bin/node
-function add (a, b) {
-  return a + b;
+exports.add = function(a, b) {
+  console.log('add');
 }
-
-module.exports = add; // This makes the function visible from outside
