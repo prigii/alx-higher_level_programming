@@ -13,4 +13,4 @@ function computeFactorial (n) {
 
 const arg = parseInt(process.argv[2]);
 
-console.log('Factorial of', arg, 'is', computeFactorial(arg));
+console.log(computeFactorial(arg));
