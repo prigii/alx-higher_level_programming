@@ -31,4 +31,3 @@ def find_peak(A):
         return recursive(A, mid + 1, right)
 
     return recursive(A)
-    
