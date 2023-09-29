@@ -3,6 +3,7 @@
 POSTS an email using a given URL
 """
 import urllib.request
+import urllib.parse
 import sys
 
 if __name__ == "__main__":
