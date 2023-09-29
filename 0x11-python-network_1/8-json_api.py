@@ -8,6 +8,7 @@ import sys
 
 
 def search_user():
+    """ Function for searching a user """
     letter = sys.argv[1] if len(sys.argv) > 1 else ""
     response = requests.post("http://0.0.0.0:5000/search_user",
                              data={"q": letter})
