@@ -7,20 +7,19 @@ import requests
 import sys
 
 
-def solve_challenge():
-    """" solving challenge function """
-    repository_name = sys.argv[1]
-    owner_name = sys.argv[2]
-    response = requests.get(f"https://api.github.com/repos/\
-        {owner_name}/{repository_name}/commits")
-    try:
-        json_response = response.json()
-        for commit in json_response[:10]:
-            sha = commit["sha"]
-            author_name = commit["commit"]["author"]["name"]
-            print(f"{sha}: {author_name}")
-    except ValueError:
-        print("Not a valid JSON")
+def main():
+    """ function for solving the challenge """
+    owner = sys.argv[1]
+    repo = sys.argv[2]
+    limit = 10
+    url = f'https://api.github.com/repos\
+/{repo}/{owner}/commits?per_page={limit}'
+
+    response = requests.get(url).json()
+    for commit in response:
+        name = commit.get("commit").get("author").get("name")
+        print(f'{commit.get("sha")}: {name}')
 
 
-solve_challenge()
+if __name__ == "__main__":
+    main()
