@@ -7,17 +7,13 @@ import requests
 import sys
 
 
-def get_github_id():
-    """ function that gets the github id """
+if __name__ == "__main__":
     username = sys.argv[1]
     password = sys.argv[2]
+    headers = {'Authorization': f'Bearer {password}'}
     response = requests.get("https://api.github.com/user",
-                            auth=(username, password))
-    try:
-        json_response = response.json()
-        print(json_response["id"])
-    except ValueError:
-        print("Not a valid JSON")
-
-
-get_github_id()
+                            headers=headers)
+    if (response.status_code >= 400):
+        print("None")
+        exit()
+    print(response.json()["id"])
