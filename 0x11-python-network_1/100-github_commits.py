@@ -8,6 +8,7 @@ import sys
 
 
 def solve_challenge():
+    """" solving challenge function """
     repository_name = sys.argv[1]
     owner_name = sys.argv[2]
     response = requests.get(f"https://api.github.com/repos/\
