@@ -14,9 +14,9 @@ const filePath = process.argv[2];
 // Read the file content in utf-8
 fs.readFile(filePath, 'utf8', (error, data) => {
   if (error) {
-    console.error('Error reading the file:', error);
+    console.error(error);
   } else {
-    console.log('File content:');
+    console.log('');
     console.log(data);
   }
 });
