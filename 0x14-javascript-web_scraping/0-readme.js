@@ -1,11 +1,11 @@
 #!/usr/bin/node
-//reads and prints the contents of a fiel
+//reads and prints the contents of a file
 
 const fs = require('fs');
 
 // Check if the file path is provided as a command-line argument
 if (process.argv.length < 3) {
-  console.log('Usage: node read-file.js <file_path>');
+  console.log('Usage: ./read-file.js file');
   process.exit(1);
 }
 
