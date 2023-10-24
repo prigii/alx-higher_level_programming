@@ -16,16 +16,16 @@ const filePath = process.argv[3];
 // Send a GET request to the URL
 request.get(url, (error, response, body) => {
   if (error) {
-    console.error('Error:', error);
+    console.error(error);
   } else if (response.statusCode !== 200) {
-    console.error('Error:', response.statusCode);
+    console.error(response.statusCode);
   } else {
     // Write the body response to the specified file in utf-8 encoding
     fs.writeFile(filePath, body, 'utf8', (writeError) => {
       if (writeError) {
-        console.error('Error writing to the file:', writeError);
+        console.error(writeError);
       } else {
-        console.log('Webpage content has been saved to:', filePath);
+        console.log(filePath);
       }
     });
   }

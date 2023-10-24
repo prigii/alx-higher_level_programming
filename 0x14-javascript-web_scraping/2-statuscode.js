@@ -14,8 +14,8 @@ const url = process.argv[2];
 // Send a GET request
 request.get(url, (error, response) => {
   if (error) {
-    console.error('Error:', error);
+    console.error(error);
   } else {
-    console.log('code:', response.statusCode);
+    console.log(response.statusCode);
   }
 });

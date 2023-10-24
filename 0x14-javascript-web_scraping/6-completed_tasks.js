@@ -9,9 +9,9 @@ const apiUrl = 'https://jsonplaceholder.typicode.com/todos';
 // Send a GET request to the API URL
 request.get(apiUrl, (error, response, body) => {
   if (error) {
-    console.error('Error:', error);
+    console.error(error);
   } else if (response.statusCode !== 200) {
-    console.error('Error:', response.statusCode);
+    console.error(response.statusCode);
   } else {
     try {
       const tasks = JSON.parse(body);
@@ -36,7 +36,7 @@ request.get(apiUrl, (error, response, body) => {
         console.log(`User ID ${userId} completed ${count} tasks.`);
       });
     } catch (parseError) {
-      console.error('Error parsing API response:', parseError);
+      console.error(parseError);
     }
   }
 });

@@ -16,15 +16,15 @@ const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
 // Send a GET request to the Star Wars API
 request.get(apiUrl, (error, response, body) => {
   if (error) {
-    console.error('Error:', error);
+    console.error(error);
   } else if (response.statusCode !== 200) {
-    console.error('Error:', response.statusCode);
+    console.error(response.statusCode);
   } else {
     try {
       const movie = JSON.parse(body);
       console.log(movie.title);
     } catch (parseError) {
-      console.error('Error parsing API response:', parseError);
+      console.error(parseError);
     }
   }
 });
