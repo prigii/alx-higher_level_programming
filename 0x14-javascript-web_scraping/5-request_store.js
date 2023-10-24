@@ -24,8 +24,6 @@ request.get(url, (error, response, body) => {
     fs.writeFile(filePath, body, 'utf8', (writeError) => {
       if (writeError) {
         console.error(writeError);
-      } else {
-        console.log(filePath);
       }
     });
   }
