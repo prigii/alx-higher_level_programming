@@ -21,9 +21,9 @@ request.get(apiUrl, (error, response, body) => {
     try {
       const movie = JSON.parse(body);
 
-      // Loop through the characters and print their names
-      movie.characters.forEach((characterUrl) => {
-        request.get(characterUrl, (charError, charResponse, charBody) => {
+      // Iterate through the characters in the order they appear
+      for (let i = 0; i < movie.characters.length; i++) {
+        request.get(movie.characters[i], (charError, charResponse, charBody) => {
           if (charError) {
             console.error(charError);
           } else if (charResponse.statusCode !== 200) {
@@ -33,7 +33,7 @@ request.get(apiUrl, (error, response, body) => {
             console.log(character.name);
           }
         });
-      });
+      }
     } catch (parseError) {
       console.error(parseError);
     }
