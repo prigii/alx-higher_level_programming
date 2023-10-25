@@ -21,7 +21,7 @@ request.get(apiUrl, (error, response, body) => {
     try {
       const movie = JSON.parse(body);
 
-        movie.characters.forEach((characterUrl, index) => {
+      movie.characters.forEach((characterUrl, index) => {
         request.get(characterUrl, (charError, charResponse, charBody) => {
           if (charError) {
             console.error(charError);
