@@ -7,3 +7,6 @@ Tasks
 4. Toggle classes
 5. List of elements
 6. Change the text
+7. Star wars character
+8. Star Wars movies
+9. Say Hello!
